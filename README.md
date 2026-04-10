@@ -7,7 +7,7 @@ Every concept from basic RAG to advanced patterns, evaluation, and prompt engine
 
 ## What This App Covers
 
-| Tab | What You Learn |
+| Tab | Learnings |
 |-----|----------------|
 | Knowledge Base | Document ingestion, chunking strategies, FAISS vector store |
 | Chunking Comparison | Side-by-side comparison of all 4 chunking strategies on the same query |
@@ -24,7 +24,7 @@ Every concept from basic RAG to advanced patterns, evaluation, and prompt engine
 ## Project Structure
 
 ```
-rag_studio/
+RAG/
 │
 ├── app.py                          # Main Streamlit entry point
 │
@@ -41,11 +41,16 @@ rag_studio/
 │   ├── tab_multimodal.py           # Tab 5: Multimodal RAG with Gemini Vision
 │   ├── tab_chatbot.py              # Tab 6: Conversational RAG chatbot
 │   ├── tab_evaluation.py           # Tab 7: RAGAS and DeepEval evaluation
-│   ├── tab_prompt_engineering.py   # Tab 8: Prompt technique comparison
-│   └── tab_learning.py             # Tab 9: Learning (empty, reserved)
+│   └── tab_learning.py             # Tab 8: Learning 
 │
 ├── utils/
 │   └── helpers.py                  # Shared utilities (file loading, session state)
+│
+├── notebooks/
+│   └── notebook1_rag_basiscs.ipynb                 # Basic RAG             
+│   └── notebook2_advanced_rag.ipynb                # Chunking types and RAG patterns
+│   └── notebook3_rag_evaluation_cahtbot.ipynb      # RAGAS metrics            
+│
 │
 ├── requirements.txt
 ├── .env.example
@@ -59,7 +64,7 @@ rag_studio/
 ### 1. Clone or download the project
 
 ```bash
-cd rag_studio
+cd RAG
 ```
 
 ### 2. Create a virtual environment
@@ -134,7 +139,7 @@ The app opens at `http://localhost:8501`
 |---------|-------|-----|
 | Main LLM | llama-3.1-8b-instant | Groq (free) |
 | Embeddings | all-MiniLM-L6-v2 | Local via sentence-transformers |
-| Multimodal + Eval | gemini-2.0-flash | Google AI (free tier) |
+| Multimodal + Eval | gemini-3.1-flash-previe | Google AI (free tier) |
 | Reranking | ms-marco-MiniLM-L-6-v2 | Local via sentence-transformers |
 
 ---
@@ -166,5 +171,5 @@ The app opens at `http://localhost:8501`
 
 - All models that run locally (embeddings, reranker) are cached with `st.cache_resource` — they load once per session.
 - The knowledge base is stored in `st.session_state` — it persists across tab switches but resets on page refresh.
-- RAGAS and DeepEval both use an LLM as judge — they consume API quota. Each evaluation call makes multiple LLM requests per sample.
+- RAGAS uses an LLM as judge. Each evaluation call makes multiple LLM requests per sample.
 - The Multimodal RAG tab writes images to a temporary file, processes them, then deletes the temp file.
