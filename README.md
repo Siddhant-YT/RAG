@@ -16,8 +16,7 @@ Every concept from basic RAG to advanced patterns, evaluation, and prompt engine
 | Multimodal RAG | Image captioning with Gemini Vision, text + image knowledge base |
 | Chatbot | Conversational RAG with memory across multiple turns |
 | Evaluation | RAGAS metrics, DeepEval pass/fail testing |
-| Prompt Engineering | Zero-shot, few-shot, chain-of-thought, role, constrained prompting |
-| Learning | Reserved for future content |
+| Learning | All the learning that I have gone through i this topic. |
 
 ---
 
@@ -129,7 +128,6 @@ The app opens at `http://localhost:8501`
 
 7. **Evaluation tab** — QA pairs are auto-collected from the Chatbot. Add ground truth answers and run RAGAS or DeepEval to get quantitative quality scores.
 
-8. **Prompt Engineering tab** — Run the same query with different prompting techniques side by side. Compare how zero-shot, chain-of-thought, and few-shot prompting affect answer style and quality.
 
 ---
 
