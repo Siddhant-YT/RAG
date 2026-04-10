@@ -1,0 +1,51 @@
+
+Retrieval-Augmented Generation (RAG) is an AI framework that retrieves relevant information
+from an external knowledge base before generating a response. RAG was introduced by Lewis et al.
+in 2020 in the paper 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks'.
+The core idea is to augment a frozen language model with a retrieval component that fetches
+relevant documents at inference time.
+
+RAG reduces hallucination by grounding the model's response in factual retrieved context.
+Instead of relying solely on parametric knowledge (weights), the model uses retrieved documents
+as grounding evidence. This allows the model to cite sources and produce verifiable outputs.
+Hallucination is the tendency of LLMs to generate plausible-sounding but factually incorrect information.
+
+The RAG pipeline consists of four main components: the document store, the retriever, the reader,
+and the generator. The document store indexes documents for retrieval. The retriever finds relevant
+documents using embedding similarity or keyword search. The reader processes retrieved documents.
+The generator uses the retrieved context to produce the final answer.
+
+FAISS (Facebook AI Similarity Search) is an open-source library developed by Meta Research.
+It enables efficient similarity search over large collections of dense vectors. FAISS supports
+both exact and approximate nearest neighbor search. It is widely used in RAG systems as the
+vector store backend due to its speed and scalability. FAISS can handle billions of vectors.
+
+Chunking is the process of splitting documents into smaller pieces before embedding them.
+Common chunking strategies include fixed-size chunking, recursive character splitting, semantic
+chunking, and hierarchical chunking. Chunk size and overlap are hyperparameters that significantly
+affect retrieval quality. Too small chunks lose context; too large chunks reduce precision.
+
+Embeddings are dense vector representations of text that capture semantic meaning. Similar texts
+have embeddings that are close in vector space, allowing cosine similarity or dot product to measure
+relevance. Popular embedding models include Sentence-BERT, OpenAI text-embedding-ada-002, and
+BGE (BAAI General Embedding). The all-MiniLM-L6-v2 model produces 384-dimensional embeddings.
+
+Reranking is a post-retrieval technique that uses a cross-encoder model to rescore retrieved
+documents. Unlike bi-encoders that embed query and document separately, cross-encoders process
+the (query, document) pair together, enabling richer interaction and more accurate relevance scoring.
+Reranking improves precision by filtering out low-quality initial retrievals.
+
+Hybrid search combines dense retrieval (semantic vector search) with sparse retrieval (keyword
+matching like BM25). Dense methods capture semantic meaning while sparse methods handle exact
+keyword matches. Reciprocal Rank Fusion (RRF) is commonly used to merge the ranked lists from
+both methods into a single unified ranking.
+
+RAGAS (Retrieval-Augmented Generation Assessment) is an evaluation framework for RAG systems.
+It provides reference-free metrics: faithfulness measures if the answer is grounded in context,
+answer relevancy measures if the answer addresses the question, context precision measures if
+retrieved context is relevant, and context recall measures if all relevant information was retrieved.
+
+LangChain is a framework for building applications powered by language models. It provides
+abstractions for chains, agents, retrievers, and memory. LangChain integrates with many LLM
+providers (OpenAI, Anthropic, Groq) and vector stores (FAISS, Chroma, Pinecone). It simplifies
+building RAG pipelines by providing ready-made components that can be composed together.
